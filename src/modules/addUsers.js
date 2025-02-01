@@ -8,10 +8,10 @@ export const addUsers = () => {
 		e.preventDefault()
 
 		const user = {
-			"name": nameInput.value,
-			"email": emailInput.value,
-			"children": childrenInput.checked,
-			"permissions": false
+			name: nameInput.value,
+			email: emailInput.value,
+			children: childrenInput.checked,
+			permissions: false
 		}
 
 		userService.addUser(user).then(res => {
