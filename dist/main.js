@@ -141,6 +141,48 @@ const editUsers = () => {
 
 /***/ }),
 
+/***/ "./modules/filterUsers.js":
+/*!********************************!*\
+  !*** ./modules/filterUsers.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   filterUsers: () => (/* binding */ filterUsers)
+/* harmony export */ });
+/* harmony import */ var _render__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./render */ "./modules/render.js");
+
+
+const filterUsers = () => {
+	const btnIsChildren = document.getElementById('btn-isChildren')
+	const btnIsPermssions = document.getElementById('btn-isPermissions')
+	const btnIsAll = document.getElementById('btn-isAll')
+
+	btnIsChildren.addEventListener('click', () => {
+		userService.filterUsers('children').then(users => {
+			;(0,_render__WEBPACK_IMPORTED_MODULE_0__.render)(users)
+			console.log(users)
+		})
+	})
+
+	btnIsPermssions.addEventListener('click', () => {
+		userService.filterUsers('permissions').then(users => {
+			;(0,_render__WEBPACK_IMPORTED_MODULE_0__.render)(users)
+			console.log(users)
+		})
+	})
+
+	btnIsAll.addEventListener('click', () => {
+		userService.getUsers().then(users => {
+			;(0,_render__WEBPACK_IMPORTED_MODULE_0__.render)(users)
+			console.log(users)
+		})
+	})
+}
+
+/***/ }),
+
 /***/ "./modules/removeUsers.js":
 /*!********************************!*\
   !*** ./modules/removeUsers.js ***!
@@ -216,6 +258,37 @@ const render = (users) => {
 
 /***/ }),
 
+/***/ "./modules/sortUsers.js":
+/*!******************************!*\
+  !*** ./modules/sortUsers.js ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   sortUsers: () => (/* binding */ sortUsers)
+/* harmony export */ });
+const sortUsers = () => {
+	const headerSortIsChildren = document.getElementById('sort-is-children')
+	let isSort = false
+
+	headerSortIsChildren.style.cursor = 'pointer'
+
+	headerSortIsChildren.addEventListener('click', () => {
+		userService.getSortUsers()
+			// {
+			// name: 'children',
+			// value: isSort ? 'asc' : 'desc',
+			// }
+		
+		// .then(users => console.log(users))
+
+		isSort = !isSort
+	})
+}
+
+/***/ }),
+
 /***/ "./modules/userService.js":
 /*!********************************!*\
   !*** ./modules/userService.js ***!
@@ -230,6 +303,7 @@ class UserService {
 	getUsers() {
 		return fetch('http://localhost:4545/users').then(res => res.json())
 	}
+
 	addUser(user) {
 		return fetch('http://localhost:4545/users', {
 			method: 'POST',
@@ -262,6 +336,10 @@ class UserService {
 			body: JSON.stringify(user),
 			headers: { "Content-type": "application/json" },
 		}).then(res => res.json())
+	}
+
+	filterUsers(filterOption) {
+		return fetch(`http://localhost:4545/users?${filterOption}=true`).then(res => res.json())
 	}
 }
 
@@ -330,12 +408,14 @@ var __webpack_exports__ = {};
   !*** ./index.js ***!
   \******************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _modules_addUsers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/addUsers */ "./modules/addUsers.js");
-/* harmony import */ var _modules_render__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/render */ "./modules/render.js");
-/* harmony import */ var _modules_userService__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/userService */ "./modules/userService.js");
+/* harmony import */ var _modules_render__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/render */ "./modules/render.js");
+/* harmony import */ var _modules_userService__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/userService */ "./modules/userService.js");
+/* harmony import */ var _modules_addUsers__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/addUsers */ "./modules/addUsers.js");
 /* harmony import */ var _modules_removeUsers__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/removeUsers */ "./modules/removeUsers.js");
 /* harmony import */ var _modules_changePerm__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/changePerm */ "./modules/changePerm.js");
 /* harmony import */ var _modules_editUsers__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/editUsers */ "./modules/editUsers.js");
+/* harmony import */ var _modules_filterUsers__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/filterUsers */ "./modules/filterUsers.js");
+/* harmony import */ var _modules_sortUsers__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/sortUsers */ "./modules/sortUsers.js");
 
 
 
@@ -343,17 +423,20 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-window.userService = new _modules_userService__WEBPACK_IMPORTED_MODULE_2__.UserService
+
+
+window.userService = new _modules_userService__WEBPACK_IMPORTED_MODULE_1__.UserService
 
 userService.getUsers().then(data => {
-	console.log(data)
-	;(0,_modules_render__WEBPACK_IMPORTED_MODULE_1__.render)(data)
+	;(0,_modules_render__WEBPACK_IMPORTED_MODULE_0__.render)(data)
 })
 
-;(0,_modules_addUsers__WEBPACK_IMPORTED_MODULE_0__.addUsers)()
+;(0,_modules_addUsers__WEBPACK_IMPORTED_MODULE_2__.addUsers)()
 ;(0,_modules_removeUsers__WEBPACK_IMPORTED_MODULE_3__.removeUsers)()
 ;(0,_modules_changePerm__WEBPACK_IMPORTED_MODULE_4__.changePerm)()
 ;(0,_modules_editUsers__WEBPACK_IMPORTED_MODULE_5__.editUsers)()
+;(0,_modules_filterUsers__WEBPACK_IMPORTED_MODULE_6__.filterUsers)()
+;(0,_modules_sortUsers__WEBPACK_IMPORTED_MODULE_7__.sortUsers)()
 })();
 
 /******/ })()

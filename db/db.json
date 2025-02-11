@@ -1,3 +1,32 @@
 {
-  "users": []
+  "users": [
+    {
+      "id": "d721",
+      "name": "Alex1",
+      "email": "khudoykulov07@gmail.com",
+      "children": false,
+      "permissions": true
+    },
+    {
+      "name": "Alex2222",
+      "email": "khudoykulov07@gmail.com",
+      "children": true,
+      "permissions": true,
+      "id": "53c1"
+    },
+    {
+      "name": "Alex3",
+      "email": "khudoykulov07@gmail.com",
+      "children": true,
+      "permissions": false,
+      "id": "9f63"
+    },
+    {
+      "id": "cb6b",
+      "name": "Alex4",
+      "email": "khudoykulov07@gmail.com",
+      "children": false,
+      "permissions": true
+    }
+  ]
 }
