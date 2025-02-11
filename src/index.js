@@ -6,6 +6,7 @@ import { changePerm } from "./modules/changePerm";
 import { editUsers } from "./modules/editUsers";
 import { filterUsers } from "./modules/filterUsers";
 import { sortUsers } from "./modules/sortUsers";
+import { searchUsers } from "./modules/searchUsers";
 
 window.userService = new UserService
 
@@ -19,3 +20,4 @@ changePerm()
 editUsers()
 filterUsers()
 sortUsers()
+searchUsers()

@@ -42,6 +42,8 @@ export class UserService {
 	}
 
 	getSortUser(sortOption) {
-		return fetch(`http://localhost:4545/users?_sort=${sortOption.id},${sortOption._sort}`).then(res => res.json())
+		return fetch(`http://localhost:4545/users?_sort=${sortOption.name}`).then(res => res.json())
 	}
+
+	// searchUsers()
 }

@@ -1,46 +1,32 @@
 {
   "users": [
     {
-      "id": "b100",
-      "name": "Суннат",
-      "email": "khudoykulov07@gmail.com",
+      "id": "04a4",
+      "name": "Alex1",
+      "email": "ss@dd.ryy",
+      "children": true,
+      "permissions": false
+    },
+    {
+      "id": "163e",
+      "name": "Alex2",
+      "email": "ss@dd.ryy",
       "children": false,
       "permissions": true
     },
     {
-      "id": "eea8",
-      "name": "Юнус",
-      "email": "khudoykulov07@gmail.com",
+      "id": "575c",
+      "name": "Alex3",
+      "email": "ss@dd.ryy",
       "children": true,
       "permissions": true
     },
     {
-      "id": "ef0b",
-      "name": "Ирода",
-      "email": "khudoykulov07@gmail.com",
-      "children": true,
-      "permissions": true
-    },
-    {
-      "id": "b2ac",
-      "name": "Далер",
-      "email": "khudoykulov07@gmail.com",
+      "name": "Alex4",
+      "email": "ss@dd.ryy",
       "children": false,
-      "permissions": false
-    },
-    {
-      "id": "4176",
-      "name": "Наргиза",
-      "email": "khudoykulov07@gmail.com",
-      "children": false,
-      "permissions": false
-    },
-    {
-      "id": "3c77",
-      "name": "Амир",
-      "email": "khudoykulov07@gmail.com",
-      "children": false,
-      "permissions": true
+      "permissions": false,
+      "id": "efc9"
     }
   ]
 }

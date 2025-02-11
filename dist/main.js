@@ -248,6 +248,25 @@ const render = (users) => {
 
 /***/ }),
 
+/***/ "./modules/searchUsers.js":
+/*!********************************!*\
+  !*** ./modules/searchUsers.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   searchUsers: () => (/* binding */ searchUsers)
+/* harmony export */ });
+const searchUsers = () => {
+	const input = document.getElementById('search-input')
+	input.addEventListener('input', () => {
+		console.log(input.value);
+	})
+}
+
+/***/ }),
+
 /***/ "./modules/sortUsers.js":
 /*!******************************!*\
   !*** ./modules/sortUsers.js ***!
@@ -258,22 +277,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   sortUsers: () => (/* binding */ sortUsers)
 /* harmony export */ });
+/* harmony import */ var _render__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./render */ "./modules/render.js");
+
+
 const sortUsers = () => {
 	const headerSortIsChildren = document.getElementById('sort-is-children')
-	let isSort
+	let isSort = true
 
 	headerSortIsChildren.style.cursor = "pointer"
 
 	headerSortIsChildren.addEventListener("click", () => {
-		userService.getSortUser(
-			{
-				id: "children",
-				_sort: isSort ? "id" : "views"
-			}
-		).then(users => console.log(users))
-
+		userService.getSortUser({
+			name: isSort ? "children" : "-children"
+		}).then(users => (0,_render__WEBPACK_IMPORTED_MODULE_0__.render)(users))
 		isSort = !isSort
-		console.log(isSort);
 	})
 }
 
@@ -331,10 +348,10 @@ class UserService {
 	filterUser(filterOption) {
 		return fetch(`http://localhost:4545/users?${filterOption}=true`).then(res => res.json())
 	}
-	getSortUser(sortOption) {
-		return fetch(`http://localhost:4545/users?_sort=${sortOption.name}&_order=${sortOption.value}`).then(res => res.json())
-	}
 
+	getSortUser(sortOption) {
+		return fetch(`http://localhost:4545/users?_sort=${sortOption.name}&_order=${sortOption.id}`).then(res => res.json())
+	}
 }
 
 /***/ })
@@ -410,6 +427,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_editUsers__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/editUsers */ "./modules/editUsers.js");
 /* harmony import */ var _modules_filterUsers__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/filterUsers */ "./modules/filterUsers.js");
 /* harmony import */ var _modules_sortUsers__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/sortUsers */ "./modules/sortUsers.js");
+/* harmony import */ var _modules_searchUsers__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./modules/searchUsers */ "./modules/searchUsers.js");
+
 
 
 
@@ -431,6 +450,7 @@ userService.getUsers().then(data => {
 ;(0,_modules_editUsers__WEBPACK_IMPORTED_MODULE_5__.editUsers)()
 ;(0,_modules_filterUsers__WEBPACK_IMPORTED_MODULE_6__.filterUsers)()
 ;(0,_modules_sortUsers__WEBPACK_IMPORTED_MODULE_7__.sortUsers)()
+;(0,_modules_searchUsers__WEBPACK_IMPORTED_MODULE_8__.searchUsers)()
 })();
 
 /******/ })()

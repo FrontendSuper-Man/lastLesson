@@ -1,18 +1,15 @@
+import { render } from "./render"
+
 export const sortUsers = () => {
 	const headerSortIsChildren = document.getElementById('sort-is-children')
-	let isSort
+	let isSort = true
 
 	headerSortIsChildren.style.cursor = "pointer"
 
 	headerSortIsChildren.addEventListener("click", () => {
-		userService.getSortUser(
-			{
-				id: "children",
-				_sort: isSort ? "id" : "views"
-			}
-		).then(users => console.log(users))
-
+		userService.getSortUser({
+			name: isSort ? "children" : "-children"
+		}).then(users => render(users))
 		isSort = !isSort
-		console.log(isSort);
 	})
 }
