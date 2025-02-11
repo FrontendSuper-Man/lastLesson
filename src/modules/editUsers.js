@@ -13,7 +13,6 @@ export const editUsers = () => {
 			const id = tr.dataset.key
 
 			userService.getUser(id).then(user => {
-				console.log(user);
 				nameInput.value = user.name
 				emailInput.value = user.email
 				childrenInput.checked = user.children
@@ -23,7 +22,6 @@ export const editUsers = () => {
 	})
 
 	form.addEventListener('submit', (event) => {
-		console.log("Форма отправлена");
 		event.preventDefault()
 
 		if (form.dataset.method) {
@@ -37,7 +35,6 @@ export const editUsers = () => {
 
 			userService.editUser(id, user).then(() => {
 				userService.getUsers().then(users => {
-					console.log("Форма отправлена");
 					render(users)
 					form.reset()
 					form.removeAttribute('data-method')

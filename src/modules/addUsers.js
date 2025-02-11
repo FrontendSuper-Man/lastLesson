@@ -7,7 +7,6 @@ export const addUsers = () => {
 	const childrenInput = document.querySelector('#form-children')
 
 	form.addEventListener('submit', (event) => {
-		console.log("Форма отправлена");
 		event.preventDefault()
 
 		if (!form.dataset.method) {
@@ -20,7 +19,6 @@ export const addUsers = () => {
 
 			userService.addUser(user).then(() => {
 				userService.getUsers().then(users => {
-					console.log("Форма отправлена");
 					render(users)
 					form.reset()
 				})

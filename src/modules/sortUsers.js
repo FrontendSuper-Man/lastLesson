@@ -1,18 +1,18 @@
 export const sortUsers = () => {
 	const headerSortIsChildren = document.getElementById('sort-is-children')
-	let isSort = false
+	let isSort
 
-	headerSortIsChildren.style.cursor = 'pointer'
+	headerSortIsChildren.style.cursor = "pointer"
 
-	headerSortIsChildren.addEventListener('click', () => {
-		userService.getSortUsers()
-			// {
-			// name: 'children',
-			// value: isSort ? 'asc' : 'desc',
-			// }
-		
-		// .then(users => console.log(users))
+	headerSortIsChildren.addEventListener("click", () => {
+		userService.getSortUser(
+			{
+				id: "children",
+				_sort: isSort ? "id" : "views"
+			}
+		).then(users => console.log(users))
 
 		isSort = !isSort
+		console.log(isSort);
 	})
 }

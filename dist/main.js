@@ -22,7 +22,6 @@ const addUsers = () => {
 	const childrenInput = document.querySelector('#form-children')
 
 	form.addEventListener('submit', (event) => {
-		console.log("Форма отправлена");
 		event.preventDefault()
 
 		if (!form.dataset.method) {
@@ -35,8 +34,7 @@ const addUsers = () => {
 
 			userService.addUser(user).then(() => {
 				userService.getUsers().then(users => {
-					console.log("Форма отправлена");
-					(0,_render__WEBPACK_IMPORTED_MODULE_0__.render)(users)
+					;(0,_render__WEBPACK_IMPORTED_MODULE_0__.render)(users)
 					form.reset()
 				})
 			})
@@ -66,11 +64,9 @@ const changePerm = () => {
 			const tr = e.target.closest('tr')
 			const input = tr.querySelector('input[type="checkbox"]')
 			const id = tr.dataset.key
-			console.log(id);
-			console.log(input);
 			userService.changeUser(id, { permissions: input.checked }).then(res => {
 				userService.getUsers().then(users => {
-					(0,_render__WEBPACK_IMPORTED_MODULE_0__.render)(users)
+					;(0,_render__WEBPACK_IMPORTED_MODULE_0__.render)(users)
 				})
 			})
 		}
@@ -105,7 +101,6 @@ const editUsers = () => {
 			const id = tr.dataset.key
 
 			userService.getUser(id).then(user => {
-				console.log(user);
 				nameInput.value = user.name
 				emailInput.value = user.email
 				childrenInput.checked = user.children
@@ -115,7 +110,6 @@ const editUsers = () => {
 	})
 
 	form.addEventListener('submit', (event) => {
-		console.log("Форма отправлена");
 		event.preventDefault()
 
 		if (form.dataset.method) {
@@ -129,8 +123,7 @@ const editUsers = () => {
 
 			userService.editUser(id, user).then(() => {
 				userService.getUsers().then(users => {
-					console.log("Форма отправлена");
-					(0,_render__WEBPACK_IMPORTED_MODULE_0__.render)(users)
+					;(0,_render__WEBPACK_IMPORTED_MODULE_0__.render)(users)
 					form.reset()
 					form.removeAttribute('data-method')
 				})
@@ -160,23 +153,20 @@ const filterUsers = () => {
 	const btnIsAll = document.getElementById('btn-isAll')
 
 	btnIsChildren.addEventListener('click', () => {
-		userService.filterUsers('children').then(users => {
+		userService.filterUser('children').then(users => {
 			;(0,_render__WEBPACK_IMPORTED_MODULE_0__.render)(users)
-			console.log(users)
 		})
 	})
 
 	btnIsPermssions.addEventListener('click', () => {
-		userService.filterUsers('permissions').then(users => {
+		userService.filterUser('permissions').then(users => {
 			;(0,_render__WEBPACK_IMPORTED_MODULE_0__.render)(users)
-			console.log(users)
 		})
 	})
 
 	btnIsAll.addEventListener('click', () => {
 		userService.getUsers().then(users => {
 			;(0,_render__WEBPACK_IMPORTED_MODULE_0__.render)(users)
-			console.log(users)
 		})
 	})
 }
@@ -270,20 +260,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 const sortUsers = () => {
 	const headerSortIsChildren = document.getElementById('sort-is-children')
-	let isSort = false
+	let isSort
 
-	headerSortIsChildren.style.cursor = 'pointer'
+	headerSortIsChildren.style.cursor = "pointer"
 
-	headerSortIsChildren.addEventListener('click', () => {
-		userService.getSortUsers()
-			// {
-			// name: 'children',
-			// value: isSort ? 'asc' : 'desc',
-			// }
-		
-		// .then(users => console.log(users))
+	headerSortIsChildren.addEventListener("click", () => {
+		userService.getSortUser(
+			{
+				id: "children",
+				_sort: isSort ? "id" : "views"
+			}
+		).then(users => console.log(users))
 
 		isSort = !isSort
+		console.log(isSort);
 	})
 }
 
@@ -338,9 +328,13 @@ class UserService {
 		}).then(res => res.json())
 	}
 
-	filterUsers(filterOption) {
+	filterUser(filterOption) {
 		return fetch(`http://localhost:4545/users?${filterOption}=true`).then(res => res.json())
 	}
+	getSortUser(sortOption) {
+		return fetch(`http://localhost:4545/users?_sort=${sortOption.name}&_order=${sortOption.value}`).then(res => res.json())
+	}
+
 }
 
 /***/ })

@@ -41,8 +41,7 @@ export class UserService {
 		return fetch(`http://localhost:4545/users?${filterOption}=true`).then(res => res.json())
 	}
 
-	getSortUsers() {
-		// return fetch(`http://localhost:4545/users?_sort=${sortOption.name}&_order=${sortOption.value}`).then(res => res.json())
-		console.log('sadjasjda,sd');
+	getSortUser(sortOption) {
+		return fetch(`http://localhost:4545/users?_sort=${sortOption.id},${sortOption._sort}`).then(res => res.json())
 	}
 }
